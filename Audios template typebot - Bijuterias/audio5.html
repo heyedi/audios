@@ -20,6 +20,8 @@
       justify-content: space-between;
       font-family: 'Open Sans', sans-serif;
       justify-content: flex-start;
+      cursor: pointer; 
+      width: 100px;
     }
 
     .audio-container img {
@@ -28,6 +30,7 @@
       border-radius: 50%;
       object-fit: cover;
       padding-right: 8px;
+      padding-left: 10px;
     }
 
     .audio-container .microphone-icon {
@@ -58,6 +61,7 @@
       color: #4a5464;
       color: var(--plyr-audio-control-color,#4a5464);
       margin-left: 0px;
+      padding: 0px;
     }
 
     .plyr--audio .plyr__control--overlaid .plyr__control__icon {
@@ -103,15 +107,15 @@
       margin-right: var(--plyr-control-spacing);
     }
 
-    /* Regra específica para ocultar os controles de tempo */
     .plyr--audio .plyr__controls .plyr__controls__item.plyr__time--current.hide,
     .plyr--audio .plyr__controls .plyr__controls__item.plyr__time--duration.hide {
       display: none;
     }
+
   </style>
 </head>
 <body>
-  <div class="audio-container">
+  <div class="audio-container" id="audioContainer">
     <!-- Cole o link do Seu áudio Abaixo-->
     <audio class="plyr" src="https://ia802708.us.archive.org/5/items/cortar_202307/corte%202.mp3"></audio>
     <!-- Cole o link da Sua imagem Abaixo-->
@@ -146,6 +150,25 @@
       audioElement.addEventListener('pause', function() {
         currentTimeElement.classList.add('hide');
         durationElement.classList.remove('hide');
+      });
+
+      const audioContainer = document.getElementById('audioContainer');
+      audioContainer.addEventListener('click', function() {
+        const playButton = audioContainer.querySelector('.plyr__controls button[data-plyr="play"]');
+        playButton.click();
+      });
+
+      const playPauseButton = document.getElementById('audioContainer').querySelector('.plyr__controls button[data-plyr="play"]');
+      const audioBox = document.querySelector('.audio-box');
+      playPauseButton.addEventListener('click', function() {
+        const playButton = audioContainer.querySelector('.plyr__controls button[data-plyr="play"]');
+        playButton.click();
+      });
+
+      audioBox.addEventListener('click', function(event) {
+        event.stopPropagation(); 
+        const playButton = audioContainer.querySelector('.plyr__controls button[data-plyr="play"]');
+        playButton.click();
       });
     });
   </script>
