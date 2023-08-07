@@ -26,7 +26,7 @@
 
     .audio-container img {
       width: 50px;
-      height: auto; /* Ajuste aqui para manter a proporção da imagem */
+      height: 50px;
       border-radius: 50%;
       object-fit: cover;
       padding-right: 8px;
@@ -62,7 +62,50 @@
   
   <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
   <script>
-    /* ... [O JavaScript permanece inalterado] ... */
+    document.addEventListener('DOMContentLoaded', function() {
+      const player = new Plyr('.plyr', {
+        controls: ['play', 'progress', 'current-time', 'duration']
+      });
+
+      const audioElement = document.querySelector('.plyr');
+      const currentTimeElement = document.querySelector('.plyr__time--current');
+      const durationElement = document.querySelector('.plyr__time--duration');
+      const microphoneIcon = document.querySelector('.microphone-icon');
+
+      currentTimeElement.classList.add('hide'); // Adiciona a classe 'hide' ao iniciar
+
+      audioElement.addEventListener('play', function() {
+        currentTimeElement.classList.remove('hide');
+        durationElement.classList.add('hide');
+        microphoneIcon.classList.add('blue'); // Adiciona a classe 'blue' para alterar a cor do ícone
+        audioElement.classList.add('blue'); // Adiciona a classe 'blue' para alterar o background do controle deslizante
+        audioElement.style.setProperty('--range-thumb-background', '#3db8ee');
+      });
+
+      audioElement.addEventListener('pause', function() {
+        currentTimeElement.classList.add('hide');
+        durationElement.classList.remove('hide');
+      });
+
+      const audioContainer = document.getElementById('audioContainer');
+      audioContainer.addEventListener('click', function() {
+        const playButton = audioContainer.querySelector('.plyr__controls button[data-plyr="play"]');
+        playButton.click();
+      });
+
+      const playPauseButton = document.getElementById('audioContainer').querySelector('.plyr__controls button[data-plyr="play"]');
+      const audioBox = document.querySelector('.audio-box');
+      playPauseButton.addEventListener('click', function() {
+        const playButton = audioContainer.querySelector('.plyr__controls button[data-plyr="play"]');
+        playButton.click();
+      });
+
+      audioBox.addEventListener('click', function(event) {
+        event.stopPropagation(); 
+        const playButton = audioContainer.querySelector('.plyr__controls button[data-plyr="play"]');
+        playButton.click();
+      });
+    });
   </script>
 </body>
 </html>
