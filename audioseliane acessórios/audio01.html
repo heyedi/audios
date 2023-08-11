@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Áudio</title>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -43,8 +44,8 @@
   </style>
 </head>
 <body>
-  <div class="audio-container" id="audioContainer">
-    <audio class="plyr" src="https://ia600507.us.archive.org/29/items/audio6elianeacessorios/audio1elianeacessorios.mp3"></audio>
+  <div class="audio-container" id="audioContainer" onclick="playAudio()">
+    <audio id="audioPlayer" class="plyr" src="https://ia600507.us.archive.org/29/items/audio6elianeacessorios/audio1elianeacessorios.mp3"></audio>
     <img src="https://i.postimg.cc/nr4jQ8HM/Design-sem-nome.jpg" alt="Imagem">
     <div class="microphone-icon">
       <i class="fas fa-microphone"></i>
@@ -52,14 +53,14 @@
   </div>
   <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const player = new Plyr('.plyr', {
-        controls: ['play', 'progress', 'current-time', 'duration'],
-        autoplay: true,
-        muted: true
-      });
-      /* ... existing script ... */
-    });
+    function playAudio() {
+      const player = document.getElementById('audioPlayer');
+      if (player.paused) {
+        player.play();
+      } else {
+        player.pause();
+      }
+    }
   </script>
 </body>
 </html>
