@@ -13,6 +13,9 @@
             height: 100vh;
             overflow: hidden;
             margin: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }    
 
         .audio-container {
@@ -20,23 +23,23 @@
             align-items: center;
             justify-content: space-between;
             font-family: 'Open Sans', sans-serif;
-            justify-content: flex-start;
             cursor: pointer; 
             width: 100px;
         }
 
         .audio-container img {
+            order: 2;
             width: 50px;
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            padding-right: 8px;
-            padding-left: 10px;
+            padding-left: 8px;
         }
 
         .audio-container .microphone-icon {
+            order: 1;
             position: relative;
-            margin-left: -67px;
+            margin-right: -67px;
             margin-bottom: -25px;
             font-size: 22px;
             color: #4ad954;
@@ -51,11 +54,11 @@
 </head>
 <body>
     <div class="audio-container" id="audioContainer">
-        <img src="https://i.postimg.cc/nr4jQ8HM/Design-sem-nome.jpg" alt="Imagem">
         <div class="microphone-icon">
             <i class="fas fa-microphone"></i>
         </div>
         <audio class="plyr" src="https://ia600507.us.archive.org/29/items/audio6elianeacessorios/audio1elianeacessorios.mp3" preload="auto" controlsList="nodownload"></audio>
+        <img src="https://i.postimg.cc/nr4jQ8HM/Design-sem-nome.jpg" alt="Imagem">
     </div>
 
     <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
