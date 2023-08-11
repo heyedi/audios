@@ -1,93 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áudio</title>
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.7/plyr.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-        
-        body {
-            height: 100vh;
-            overflow: hidden;
-            margin: 0px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }    
-
-        .audio-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: 'Open Sans', sans-serif;
-            cursor: pointer; 
-            width: 100px;
-        }
-
-        .audio-container img {
-            order: 2;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            padding-left: 8px;
-        }
-
-        .audio-container .microphone-icon {
-            order: 1;
-            position: relative;
-            margin-right: -67px;
-            margin-bottom: -25px;
-            font-size: 22px;
-            color: #4ad954;
-        }
-
-        .audio-container .microphone-icon.blue {
-            color: #3db8ee;
-        }
-
-        /* ... [resto do CSS original] ... */
-    </style>
+  <meta charset="UTF-8">
+  <title>Áudio</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* ... existing styles ... */
+  </style>
 </head>
 <body>
-    <div class="audio-container" id="audioContainer">
-        <div class="microphone-icon">
-            <i class="fas fa-microphone"></i>
-        </div>
-        <audio class="plyr" src="https://ia600507.us.archive.org/29/items/audio6elianeacessorios/audio1elianeacessorios.mp3" preload="auto" controlsList="nodownload"></audio>
-        <img src="https://i.postimg.cc/nr4jQ8HM/Design-sem-nome.jpg" alt="Imagem">
+  <div class="audio-container" id="audioContainer">
+    <audio class="plyr" src="https://ia600507.us.archive.org/29/items/audio6elianeacessorios/audio1elianeacessorios.mp3"></audio>
+    <img src="https://i.postimg.cc/nr4jQ8HM/Design-sem-nome.jpg" alt="Imagem">
+    <div class="microphone-icon">
+      <i class="fas fa-microphone"></i>
     </div>
-
-    <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const player = new Plyr('.plyr', {
-                controls: ['play', 'progress', 'current-time', 'duration']
-            });
-
-            const audioElement = document.querySelector('.plyr');
-            const microphoneIcon = document.querySelector('.microphone-icon');
-
-            audioElement.addEventListener('play', function() {
-                microphoneIcon.classList.add('blue');
-            });
-
-            audioElement.addEventListener('pause', function() {
-                microphoneIcon.classList.remove('blue');
-            });
-
-            const audioContainer = document.getElementById('audioContainer');
-            audioContainer.addEventListener('click', function() {
-                if (player.playing) {
-                    player.pause();
-                } else {
-                    player.play();
-                }
-            });
-        });
-    </script>
+  </div>
+  
+  <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const player = new Plyr('.plyr', {
+        controls: ['play', 'progress', 'current-time', 'duration'],
+        autoplay: true,
+        muted: true
+      });
+      /* ... existing script ... */
+      document.body.addEventListener('click', function() {
+        player.muted = false;
+        if (player.paused) {
+          player.play();
+        } else {
+          player.pause();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
