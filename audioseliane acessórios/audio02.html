@@ -6,7 +6,40 @@
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
-    /* ... existing styles ... */
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+    body {
+      height: 100vh;
+      overflow: hidden;
+      margin: 0px;
+    }
+    .audio-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Open Sans', sans-serif;
+      justify-content: flex-start;
+      cursor: pointer; 
+      width: 100px;
+    }
+    .audio-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      padding-right: 8px;
+      padding-left: 10px;
+    }
+    .audio-container .microphone-icon {
+      position: relative;
+      margin-left: -67px;
+      margin-bottom: -25px;
+      font-size: 22px;
+      color: #4ad954;
+    }
+    .audio-container .microphone-icon.blue {
+      color: #3db8ee;
+    }
+    /* ... other styles ... */
   </style>
 </head>
 <body>
@@ -17,7 +50,6 @@
       <i class="fas fa-microphone"></i>
     </div>
   </div>
-  
   <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -27,14 +59,6 @@
         muted: true
       });
       /* ... existing script ... */
-      document.body.addEventListener('click', function() {
-        player.muted = false;
-        if (player.paused) {
-          player.play();
-        } else {
-          player.pause();
-        }
-      });
     });
   </script>
 </body>
